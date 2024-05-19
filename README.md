@@ -1,2 +1,2 @@
-# CartingRaceWay
+# KartingRaceway
 Система хранения и анализа заездов на картинге
