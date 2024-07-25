@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from broker.schemas import EmailSchema
 from broker.settings import conf
-from raceway import router
+from backend import router
 
-from raceway.settings import base
+from backend.settings import base
 
 from starlette.responses import JSONResponse
 from fastapi_mail import FastMail, MessageSchema, MessageType
@@ -18,7 +18,7 @@ app = F.FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],
+    allow_origins=["http://127.0.0.1:80"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
