@@ -14,7 +14,7 @@ services:
       context: .
       dockerfile: ./backend.Dockerfile
     ports:
-      - 127.0.0.1:8010:8000
+      - 127.0.0.1:8000:8000
     env_file: .env
   frontend:
     restart: always
