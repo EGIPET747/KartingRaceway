@@ -1,45 +1,66 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
+  <div class="login">
+    <input type="text" placeholder="Имя" v-model="userName">
+    <br>
+    <input type="email" placeholder="Email" v-model="userEmail">
+    <br>
+    <input type="password" placeholder="Пароль" v-model="userPass">
+    <br>
+    <button type="button" @click="sendUserData">Отправить данные</button>
+    <div v-if="users.length == 0">Пользователей нет</div>
+    <div v-else-if="users.length == 1">Единственный пользователь:</div>
+    <div v-else>Список пользователей ({{ users.length }}):</div>
+    <UserBlock v-for="(user, user_id) in users" :key="user_id" :user="user" :user_id="user_id" :deleteUser="deleteUser" />
   </div>
 </template>
 
 <script>
+import UserBlock from "/src/components/about/UserBlock.vue"
+
 export default {
   name: 'AboutView',
   props: {
-    msg: String
+    API_URL: {
+      type: String,
+      required: true,
+    }
+  },
+  components: { UserBlock },
+  data() {
+    return {
+      users: [],
+      userName: '',
+      userPass: '',
+      userEmail: '',
+    }
+  },
+  methods: {
+    sendUserData() {
+      if(this.userName == ''){
+        alert("Введите имя")
+        return;
+      }
+      if(this.userEmail == ''){
+        alert("Введите email")
+        return;
+      }
+      if(this.userPass == ''){
+        alert("Введите пароль")
+        return;
+      }
+      this.users.push({
+        name: this.userName,
+        pass: this.userPass,
+        email: this.userEmail,
+      })
+    },
+    deleteUser(user_id){
+      this.users.splice(user_id, 1);
+    }
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
