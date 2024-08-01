@@ -1,4 +1,5 @@
 #!/bin/sh
 
 # запуск сервера
-exec npm run serve
+exec npm run build
+exec npm run serve --omit=dev

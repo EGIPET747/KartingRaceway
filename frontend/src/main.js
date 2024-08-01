@@ -1,29 +1,26 @@
 import { createApp } from 'vue'
-import { createMemoryHistory, createRouter } from 'vue-router'
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
 import axios from 'axios'
 
-import './css/main.css'
-import './css/bootstrap.min.css'
+import 'primeicons/primeicons.css'
+import '@/css/main.css'
 
-import App from './App.vue'
-import AboutView from './components/about/AboutView.vue'
-import MainView from './components/main/MainView.vue'
+import router from '@/scripts/router';
 
+import App from '@/App.vue'
 
-const routes = [
-  { path: '/', name: "Main", component: MainView },
-  { path: '/about', name: "About", component: AboutView },
-]
+const app = createApp(App)
 
-const router = createRouter({
-  history: createMemoryHistory(),
-  routes,
-})
+app.use(router)
+app.use(PrimeVue, {
+    theme: {
+        preset: Aura
+    }
+  })
 
-createApp(App)
-  .use(router)
-  .mount('#app')
+app.mount('#app')
 
 axios.defaults.withCredentials = false;
-axios.defaults.headers.post['Content-Type'] ='application/json;charset=utf-8';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
