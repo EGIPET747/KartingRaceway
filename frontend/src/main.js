@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
+import Ripple from 'primevue/ripple';
 import Aura from '@primevue/themes/aura';
 import axios from 'axios'
 
@@ -14,10 +15,12 @@ const app = createApp(App)
 
 app.use(router)
 app.use(PrimeVue, {
+    ripple: true,
     theme: {
         preset: Aura
     }
   })
+app.directive('ripple', Ripple)
 
 app.mount('#app')
 
