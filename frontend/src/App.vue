@@ -7,10 +7,12 @@
       </div>
     </main>
   </div>
+  <Footer id="footer" />
 </template>
 
 <script>
 import MenuItems from '@/components/MenuItems';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'App',
@@ -21,7 +23,12 @@ export default {
     }
   },
   components: {
-    MenuItems,
+    Footer, MenuItems,
+  },
+  methods: {
+    redirect(link){
+      window.open(link, "_blank").focus();
+    }
   }
 }
 </script>
@@ -33,5 +40,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   margin-top: 20px;
+}
+
+#footer {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  text-align: center; 
+  width: 99%;   
+  font-size: 19px;
 }
 </style>
