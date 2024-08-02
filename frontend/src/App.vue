@@ -7,7 +7,9 @@
       </div>
     </main>
   </div>
-  <Footer id="footer" />
+  <div id="footer" class="m-0 pb-2">
+    <Footer />
+  </div>
 </template>
 
 <script>
@@ -46,12 +48,10 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   position: fixed;
-  right: 0;
   bottom: 0;
-  text-align: center; 
-  width: 99%;   
+  text-align: center;
   font-size: 19px;
+  width: -webkit-fill-available;
 }
 </style>

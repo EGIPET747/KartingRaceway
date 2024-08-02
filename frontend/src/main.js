@@ -5,6 +5,7 @@ import Aura from '@primevue/themes/aura';
 import axios from 'axios'
 
 import 'primeicons/primeicons.css'
+import 'primeflex/primeflex.css';
 import '@/css/main.css'
 
 import router from '@/scripts/router';
@@ -17,7 +18,12 @@ app.use(router)
 app.use(PrimeVue, {
     ripple: true,
     theme: {
-        preset: Aura
+        preset: Aura,
+        options: {
+            prefix: 'p',
+            darkModeSelector: 'system',
+            cssLayer: false
+        }
     }
   })
 app.directive('ripple', Ripple)

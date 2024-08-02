@@ -1,5 +1,5 @@
 <template>
-  <footer className="custimFooter">
+  <footer class="mr-2">
     <Fieldset legend="Karting RaceWay" :toggleable="false">
         <div id="links">
             <Button icon="pi pi-telegram" aria-label="Filter" @click="redirect('https://t.me/kazakov_id')" />
@@ -30,11 +30,5 @@ export default {
 <style scoped>
 #links button {
   margin: 0px 5px 0px 5px;
-}
-
-.custimFooter {
-  padding: 5px 5px 5px 5px;
-  margin: 0px;
-  margin-bottom: 5px;
 }
 </style>
