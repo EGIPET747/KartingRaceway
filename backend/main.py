@@ -2,11 +2,11 @@ import fastapi as F
 from fastapi.middleware.cors import CORSMiddleware
 
 from backend import router
-
-from backend.settings import base
+from backend.settings import common
+from backend.settings.database import Base
 
 app = F.FastAPI(
-    title=base.TITLE,
+    title=common.TITLE,
 )
 
 app.add_middleware(
@@ -17,9 +17,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router=router, prefix="", tags=["krw"])
+app.include_router(router=router, prefix="", tags=[common.TITLE])
 
 
 @app.get("/")
 async def main_page():
-    return base.TITLE_FULL
+    return common.TITLE_FULL

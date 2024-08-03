@@ -9,6 +9,11 @@ ruff = "==0.4.4"
 uvicorn = "==0.29.0"
 fastapi = {extras = ["all"], version = "==0.111.0"}
 fastapi-mail = "==1.4.1"
+fire = "==0.6.0"
+sqlalchemy = "==2.0.31"
+asyncpg = "==0.29.0"
+sqlmodel = "==0.0.21"
+psycopg2 = "*"
 
 [dev-packages]
 
