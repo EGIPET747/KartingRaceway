@@ -3,7 +3,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from backend import router
 from backend.settings import common
-from backend.settings.database import Base
 
 app = F.FastAPI(
     title=common.TITLE,
