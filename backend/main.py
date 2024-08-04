@@ -6,6 +6,15 @@ from backend.settings import common
 
 app = F.FastAPI(
     title=common.TITLE,
+    version=common.VERSION,
+    swagger_ui_parameters={
+        "filter": True,
+        "docExpansion": "none",
+        "displayRequestDuration": True,
+        "tagsSorter": "alpha",
+        "operationsSorter": "alpha",
+        # "defaultModelsExpandDepth": -1, # Убирает схемы из доки
+    },
 )
 
 app.add_middleware(
