@@ -42,26 +42,26 @@ class Manager:
 
     def make_migration(self, message: str = "migration"):
         """Создание автоматической миграции с сообщением"""
-        from backend.settings import common
+        from backend.settings import configuration
 
         logger.info("Make migration message: %s", message)
-        alembic.command.revision(autogenerate=True, message=message, config=common.ALEMBIC_CFG)
+        alembic.command.revision(autogenerate=True, message=message, config=configuration.ALEMBIC_CFG)
         logger.info("Done")
 
     def upgrade_database(self):
         """Применение миграций БД"""
-        from backend.settings import common
+        from backend.settings import configuration
 
         logger.info("Upgrade db to heads")
-        alembic.command.upgrade(revision="heads", config=common.ALEMBIC_CFG)
+        alembic.command.upgrade(revision="heads", config=configuration.ALEMBIC_CFG)
         logger.info("Upgrade db to heads completed")
 
     def downgrade_database(self, revision: str = "-1"):
         """Откат миграции БД до ревизии или на -1"""
-        from backend.settings import common
+        from backend.settings import configuration
 
         logger.info("Downgrade db to revision: %s", revision)
-        alembic.command.downgrade(revision=revision, config=common.ALEMBIC_CFG)
+        alembic.command.downgrade(revision=revision, config=configuration.ALEMBIC_CFG)
         logger.info("Downgrade db to revision %s completed", revision)
 
     def magic(self):

@@ -1,12 +1,12 @@
 import fastapi as F
 from fastapi.middleware.cors import CORSMiddleware
 
-from backend import router
-from backend.settings import common
+from backend.router import router
+from backend.settings import configuration
 
 app = F.FastAPI(
-    title=common.TITLE,
-    version=common.VERSION,
+    title=configuration.TITLE,
+    version=configuration.VERSION,
     swagger_ui_parameters={
         "filter": True,
         "docExpansion": "none",
@@ -25,9 +25,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(router=router, prefix="", tags=[common.TITLE])
+app.include_router(router=router, prefix="", tags=[configuration.TITLE])
 
 
 @app.get("/")
 async def main_page():
-    return common.TITLE_FULL
+    return configuration.TITLE_FULL
