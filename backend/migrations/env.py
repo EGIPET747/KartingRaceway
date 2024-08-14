@@ -12,7 +12,7 @@ from sqlmodel import SQLModel
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from backend.common.models import models
+from backend.common import models
 from backend.settings.database import DB_URL
 
 sys.path = ["", ".."] + sys.path[1:]
