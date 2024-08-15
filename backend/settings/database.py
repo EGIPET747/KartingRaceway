@@ -1,16 +1,11 @@
 import asyncio
 import os
 from typing import AsyncGenerator
-
-from backend.common import models
+from backend.common import models  # noqa: F401
 
 from dotenv import load_dotenv
-from sqlalchemy import create_engine
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import DeclarativeMeta
 from sqlalchemy.pool import NullPool
-from sqlmodel import SQLModel
 
 load_dotenv()
 

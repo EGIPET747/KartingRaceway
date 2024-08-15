@@ -1,3 +1,3 @@
-import backend.club.models
-import backend.session.models
-import backend.user.models
+import backend.club.models  # noqa: F401
+import backend.session.models  # noqa: F401
+import backend.user.models  # noqa: F401

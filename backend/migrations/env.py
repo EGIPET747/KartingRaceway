@@ -4,7 +4,7 @@ import sys
 from logging.config import fileConfig
 
 from sqlalchemy.ext.asyncio import async_engine_from_config
-from sqlalchemy import engine_from_config
+from sqlalchemy import engine_from_config  # noqa: F401
 from sqlalchemy import pool
 
 from alembic import context
@@ -12,7 +12,7 @@ from sqlmodel import SQLModel
 
 # add your model's MetaData object here
 # for 'autogenerate' support
-from backend.common import models
+from backend.common import models  # noqa: F401
 from backend.settings.database import DB_URL
 
 sys.path = ["", ".."] + sys.path[1:]

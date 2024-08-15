@@ -28,7 +28,7 @@ class Club(ClubBase, TableMixin, table=True):
     async def get(cls, pk, session: AsyncSession) -> Any:
         statement = select(cls).join(Raceway).where(cls.id == pk)
         return (await session.execute(statement)).scalars().first()
-        
+
 
 class Raceway(RacewayBase, table=True):
     __tablename__ = TABLE_PREFIX + "raceway"
