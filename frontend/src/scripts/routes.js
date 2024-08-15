@@ -1,14 +1,15 @@
 import AboutView from '@/views/AboutView.vue'
 import UsersView from '@/views/UsersView.vue'
-import MainView from '@/views/MainView.vue'
+import ClubsView from '@/views/ClubsView.vue'
 
 
-const routes = [{ 
+const routes = [
+  { 
     url: '/',
     path: '/', 
-    label: "Main", 
-    name: "Main",
-    component: MainView,
+    label: "Clubs", 
+    name: "Clubs",
+    component: ClubsView,
     icon: "pi pi-home",
   },
   { 
