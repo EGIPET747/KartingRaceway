@@ -19,7 +19,7 @@ class Session(SessionBase, table=True):
     raceway_id: int = Field(default=None, foreign_key="club__raceway.id")
     raceway: Raceway = Relationship(back_populates="sessions")
 
-    results: list["Result"] = Relationship(back_populates="session") # type: ignore
+    results: list["Result"] = Relationship(back_populates="session")
 
     class Config:
         arbitrary_types_allowed = True

@@ -18,7 +18,7 @@ class Racer(RacerBase, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     description: Dict = Field(default_factory=dict, sa_column=Column(JSON))
 
-    results: list["Result"] = Relationship(back_populates="racer") # type: ignore
+    results: list["Result"] = Relationship(back_populates="racer")
 
     class Config:
         arbitrary_types_allowed = True

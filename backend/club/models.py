@@ -1,7 +1,8 @@
 
-from typing import Dict, TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING
 from sqlalchemy import JSON, Column
-from sqlmodel import Field, Relationship
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlmodel import Field, Relationship, select
 from backend.club.configuration import TABLE_PREFIX
 from backend.club.schemas.car import CarBase
 from backend.club.schemas.club import ClubBase
@@ -22,6 +23,11 @@ class Club(ClubBase, TableMixin, table=True):
 
     class Config:
         arbitrary_types_allowed = True
+
+    @classmethod
+    async def get(cls, pk, session: AsyncSession) -> Any:
+        statement = select(cls).join(Raceway).where(cls.id == pk)
+        return (await session.execute(statement)).scalars().first()
         
 
 class Raceway(RacewayBase, table=True):
@@ -33,8 +39,8 @@ class Raceway(RacewayBase, table=True):
     club_id: int = Field(default=None, foreign_key="club__club.id")
     club: Club = Relationship(back_populates="raceways")
 
-    sessions: list["Session"] = Relationship(back_populates="raceway", sa_relationship_kwargs={"lazy": "selectin"})
-    cars: list["Car"] = Relationship(back_populates="raceway", sa_relationship_kwargs={"lazy": "selectin"})
+    sessions: list["Session"] = Relationship(back_populates="raceway")
+    cars: list["Car"] = Relationship(back_populates="raceway")
 
     class Config:
         arbitrary_types_allowed = True
@@ -47,9 +53,9 @@ class Car(CarBase, table=True):
     description: Dict = Field(default_factory=dict, sa_column=Column(JSON))
 
     raceway_id: int = Field(default=None, foreign_key="club__raceway.id")
-    raceway: Raceway = Relationship(back_populates="cars", sa_relationship_kwargs={"lazy": "selectin"})
+    raceway: Raceway = Relationship(back_populates="cars")
 
-    results: list["Result"] = Relationship(back_populates="car", sa_relationship_kwargs={"lazy": "selectin"})
+    results: list["Result"] = Relationship(back_populates="car")
 
     class Config:
         arbitrary_types_allowed = True

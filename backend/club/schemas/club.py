@@ -10,5 +10,5 @@ class ClubBase(SQLModel):
     description: dict
 
 
-class ClubCreate(ClubBase):
-    pass
+class ClubItem(ClubBase):
+    raceways: list[RacewayBase]
