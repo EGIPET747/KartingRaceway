@@ -9,7 +9,7 @@ from backend.club.schemas.raceway import RacewayBase
 from backend.common.mixin import TableMixin
 
 if TYPE_CHECKING:
-    from backend.session.models import ResultTable, SessionTable
+    from backend.session.models import Result, Session
 
 
 class Club(ClubBase, TableMixin, table=True):
@@ -33,7 +33,7 @@ class Raceway(RacewayBase, table=True):
     club_id: int = Field(default=None, foreign_key="club__club.id")
     club: Club = Relationship(back_populates="raceways")
 
-    sessions: list["SessionTable"] = Relationship(back_populates="raceway", sa_relationship_kwargs={"lazy": "selectin"})
+    sessions: list["Session"] = Relationship(back_populates="raceway", sa_relationship_kwargs={"lazy": "selectin"})
     cars: list["Car"] = Relationship(back_populates="raceway", sa_relationship_kwargs={"lazy": "selectin"})
 
     class Config:
@@ -49,7 +49,7 @@ class Car(CarBase, table=True):
     raceway_id: int = Field(default=None, foreign_key="club__raceway.id")
     raceway: Raceway = Relationship(back_populates="cars", sa_relationship_kwargs={"lazy": "selectin"})
 
-    results: list["ResultTable"] = Relationship(back_populates="car", sa_relationship_kwargs={"lazy": "selectin"})
+    results: list["Result"] = Relationship(back_populates="car", sa_relationship_kwargs={"lazy": "selectin"})
 
     class Config:
         arbitrary_types_allowed = True

@@ -10,7 +10,7 @@ from backend.session.schemas.session import SessionBase
 from backend.user.models import Racer
 
 
-class SessionTable(SessionBase, table=True):
+class Session(SessionBase, table=True):
     __tablename__ = TABLE_PREFIX + "session"
 
     id: int = Field(default=None, primary_key=True)
@@ -19,13 +19,13 @@ class SessionTable(SessionBase, table=True):
     raceway_id: int = Field(default=None, foreign_key="club__raceway.id")
     raceway: Raceway = Relationship(back_populates="sessions")
 
-    results: list["ResultTable"] = Relationship(back_populates="session") # type: ignore
+    results: list["Result"] = Relationship(back_populates="session") # type: ignore
 
     class Config:
         arbitrary_types_allowed = True
 
 
-class ResultTable(ResultBase, table=True):
+class Result(ResultBase, table=True):
     __tablename__ = TABLE_PREFIX + "result"
 
     id: int = Field(default=None, primary_key=True)
@@ -38,7 +38,7 @@ class ResultTable(ResultBase, table=True):
     racer: Racer = Relationship(back_populates="results")
     
     session_id: int = Field(default=None, foreign_key="session__session.id")
-    session: SessionTable = Relationship(back_populates="results")
+    session: Session = Relationship(back_populates="results")
 
     class Config:
         arbitrary_types_allowed = True
