@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import UserBlock from "@/components/user/UserBlock.vue"
+import UserBlock from "@/views/user/UserBlock.vue"
 
 export default {
   name: 'AboutView',

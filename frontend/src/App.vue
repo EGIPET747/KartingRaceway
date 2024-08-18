@@ -3,12 +3,12 @@
     <MenuItems />
     <main>
       <div class="container">
-        <RouterView :API_URL="API_URL" />
+        <RouterView :API_URL="API_URL" :pageName="pageName" />
       </div>
     </main>
-  </div>
-  <div id="footer" class="m-0 pb-2">
-    <Footer />
+    <div id="footer" class="m-0 pb-2">
+      <Footer />
+    </div>
   </div>
 </template>
 
@@ -35,13 +35,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 #wrapper {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pageTitle {
+  text-align: center;
 }
 
 #footer {

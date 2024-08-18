@@ -1,6 +1,6 @@
 <template>
   <footer class="mr-2">
-    <Fieldset legend="Karting RaceWay" :toggleable="false">
+    <Fieldset legend="Karting RaceWay" :toggleable="true" :collapsed="true">
         <div id="links">
             <Button icon="pi pi-telegram" aria-label="Filter" @click="redirect('https://t.me/kazakov_id')" />
             <Button icon="pi pi-github" aria-label="Filter" @click="redirect('https://github.com/EGIPET747')" />

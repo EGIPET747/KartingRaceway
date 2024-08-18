@@ -4,13 +4,14 @@ import uuid
 from sqlalchemy import JSON, Column
 from sqlmodel import Field, Relationship
 from backend.club.models import Car, Raceway
+from backend.common.mixin import StatusMixin
 from backend.session.configuration import TABLE_PREFIX
 from backend.session.schemas.result import ResultBase
 from backend.session.schemas.session import SessionBase
 from backend.user.models import Racer
 
 
-class Session(SessionBase, table=True):
+class Session(SessionBase, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "session"
 
     id: int = Field(default=None, primary_key=True)
@@ -25,7 +26,7 @@ class Session(SessionBase, table=True):
         arbitrary_types_allowed = True
 
 
-class Result(ResultBase, table=True):
+class Result(ResultBase, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "result"
 
     id: int = Field(default=None, primary_key=True)

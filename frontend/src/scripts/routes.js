@@ -1,6 +1,6 @@
-import AboutView from '@/views/AboutView.vue'
-import UsersView from '@/views/UsersView.vue'
-import ClubsView from '@/views/ClubsView.vue'
+import AboutView from '@/views/about/AboutView.vue'
+import UsersView from '@/views/user/UsersView.vue'
+import ClubsView from '@/views/club/ClubsView.vue'
 
 
 const routes = [
@@ -27,6 +27,7 @@ const routes = [
     name: "About",
     component: AboutView,
     icon: "pi pi-question",
-  }]
+  },
+]
 
 export default routes

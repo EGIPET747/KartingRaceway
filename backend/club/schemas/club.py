@@ -5,6 +5,7 @@ from backend.club.schemas.raceway import RacewayBase
 
 
 class ClubBase(SQLModel):
+    id: Optional[int]
     logo: Optional[str]
     name: str
     description: dict

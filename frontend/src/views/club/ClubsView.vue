@@ -1,9 +1,9 @@
 <template>
   <div className="clubsPage">
-    <h1>{{ pageName }}</h1>
+    <h1 className="pageTitle">{{ pageName }}</h1>
     <div className="wrapper">
         <div className="grid grid-nogutter surface-section">
-          <ClubBlock v-for="(club, club_id) in clubs" :key="club_id" :club="club" :club_id="club_id" :deleteClub="deleteClub" />
+          <ClubBlock v-for="(club, club_id) in clubs" :key="club_id" :club="club" :deleteClub="deleteClub" />
         </div>
     </div>
   </div>
@@ -11,7 +11,7 @@
 
 <script>
 import axios from 'axios';
-import ClubBlock from "@/components/club/ClubBlock.vue"
+import ClubBlock from "@/views/club/ClubBlock.vue"
 
 export default {
   components: { ClubBlock },
@@ -41,8 +41,8 @@ export default {
         this.clubs = res.data;
       })
     },
-    deleteClub() {
-      alert("Никакого делита пока не реализуешь!")
+    deleteClub(pk) {
+      axios.delete(this.API_URL + "api/club/", {data: pk});
     }
   }
 }

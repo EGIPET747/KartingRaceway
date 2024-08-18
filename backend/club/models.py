@@ -7,13 +7,13 @@ from backend.club.configuration import TABLE_PREFIX
 from backend.club.schemas.car import CarBase
 from backend.club.schemas.club import ClubBase
 from backend.club.schemas.raceway import RacewayBase
-from backend.common.mixin import TableMixin
+from backend.common.mixin import StatusMixin, TableMixin
 
 if TYPE_CHECKING:
     from backend.session.models import Result, Session
 
 
-class Club(ClubBase, TableMixin, table=True):
+class Club(ClubBase, TableMixin, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "club"
 
     id: int = Field(default=None, primary_key=True)
@@ -30,7 +30,7 @@ class Club(ClubBase, TableMixin, table=True):
         return (await session.execute(statement)).scalars().first()
 
 
-class Raceway(RacewayBase, table=True):
+class Raceway(RacewayBase, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "raceway"
 
     id: int = Field(default=None, primary_key=True)
@@ -46,7 +46,7 @@ class Raceway(RacewayBase, table=True):
         arbitrary_types_allowed = True
 
 
-class Car(CarBase, table=True):
+class Car(CarBase, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "car"
 
     id: int = Field(default=None, primary_key=True)
