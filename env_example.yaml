@@ -1,0 +1,13 @@
+# Подключение к БД
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=DATABASE_NAME
+DB_USER=DATABASE_USERNAME
+DB_PASS=DATABASE_PASSWORD
+
+# Подключение к серверу почтовых рассылок
+MAIL_USERNAME=username
+MAIL_PASSWORD=userpassword
+MAIL_FROM=username@mail.ru
+MAIL_FROM_NAME=User Name
+MAIL_SERVER=localhost:578
