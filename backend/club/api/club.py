@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from backend.club.models import Club
-from backend.club.schemas.club import ClubItem
+from backend.club.schemas.club import ClubBase, ClubCreate, ClubItem
 from backend.settings.database import get_session
 
 router = APIRouter()
@@ -20,3 +20,8 @@ async def get_club_list(session: AsyncSession = Depends(get_session)) -> list[Cl
 @router.delete("/")
 async def delete_club(pk: int = Body(), session: AsyncSession = Depends(get_session)) -> None:
     return (await Club.delete(pk, session))
+
+
+@router.post("/", status_code=201)
+async def create_club(data: ClubCreate = Body(), session: AsyncSession = Depends(get_session)) -> None:
+    return (await Club.create(data, session))

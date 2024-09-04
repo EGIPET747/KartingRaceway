@@ -7,6 +7,5 @@ class RacewayBase(SQLModel):
     description: dict
 
 
-
-class RaceWayCreate(RacewayBase):
-    pass
+class RacewayCreate(RacewayBase):
+    club_id: int

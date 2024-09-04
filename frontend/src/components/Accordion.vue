@@ -2,10 +2,12 @@
   <Accordion>
     <AccordionPanel value="pk">
       <AccordionHeader>{{ header }}</AccordionHeader>
-      <AccordionContent v-for="(item, item_id) in items" :key="item_id">
-        <p class="m-0">
+      <AccordionContent>
+        <div class="mb-3" v-for="(item, item_id) in items" :key="item_id">
           {{ item }}
-        </p>
+          <hr />
+        </div>
+        <Button :label="aBText" @click="aBMethod(aBArgs)" icon="pi pi-plus" iconPos="right" />
       </AccordionContent>
     </AccordionPanel>
   </Accordion>
@@ -16,6 +18,7 @@ import Accordion from 'primevue/accordion';
 import AccordionPanel from 'primevue/accordionpanel';
 import AccordionHeader from 'primevue/accordionheader';
 import AccordionContent from 'primevue/accordioncontent';
+import Button from 'primevue/button';
 
 export default {
   name: "AAccordion",
@@ -32,9 +35,21 @@ export default {
       type: String,
       required: true
     },
+    aBText: {
+      type: String,
+      required: true
+    },
+    aBMethod: {
+      type: Function,
+      required: true
+    },
+    aBArgs: {
+      type: Object,
+      required: true
+    },
   },
   components: {
-    Accordion, AccordionPanel, AccordionHeader, AccordionContent
+    Accordion, AccordionPanel, AccordionHeader, AccordionContent, Button
   }
 }
 </script>

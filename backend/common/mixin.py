@@ -1,5 +1,7 @@
 import enum
 from typing import Any, Optional
+
+from pydantic import BaseModel
 from sqlalchemy import Enum
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlmodel import Field, select
@@ -27,6 +29,13 @@ class TableMixin:
             raise ValueError("Item not found")
 
         item.status = _Status.deleted
+        await session.commit()
+
+    
+    @classmethod
+    async def create(cls, data: BaseModel, session: AsyncSession) -> Any:
+        item = cls(**data.__dict__)
+        session.add(item)
         await session.commit()
 
 

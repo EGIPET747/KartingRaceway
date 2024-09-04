@@ -3,6 +3,7 @@ import PrimeVue from 'primevue/config';
 import Ripple from 'primevue/ripple';
 import Aura from '@primevue/themes/aura';
 import axios from 'axios'
+import DialogService from 'primevue/dialogservice';
 
 import 'primeicons/primeicons.css'
 import 'primeflex/primeflex.css';
@@ -15,6 +16,7 @@ import App from '@/App.vue'
 const app = createApp(App)
 
 app.use(router)
+app.use(DialogService)
 app.use(PrimeVue, {
     ripple: true,
     theme: {
@@ -29,6 +31,9 @@ app.use(PrimeVue, {
 app.directive('ripple', Ripple)
 
 app.mount('#app')
+
+// Глобальная переменная. Доступна через inject в mounted или setup
+app.provide("API_URL", process.env.VUE_APP_API_URL || "http://127.0.0.1:8000/")
 
 axios.defaults.withCredentials = false;
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';

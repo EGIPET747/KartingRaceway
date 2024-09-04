@@ -3,7 +3,7 @@
     <MenuItems />
     <main>
       <div class="container">
-        <RouterView :API_URL="API_URL" :pageName="pageName" />
+        <RouterView :pageName="pageName" />
       </div>
     </main>
     <div id="footer" class="m-0 pb-2">
@@ -20,8 +20,7 @@ export default {
   name: 'App',
   data() {
     return {
-      projName: "Karting RaceWay",
-      API_URL: process.env.VUE_APP_API_URL,
+      pageName: "Karting Raceway",
     }
   },
   components: {
@@ -36,8 +35,11 @@ export default {
 </script>
 
 <style>
-#wrapper {
+body {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+#wrapper {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin-top: 20px;

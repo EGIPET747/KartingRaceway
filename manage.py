@@ -83,12 +83,20 @@ class Manager:
         parameters = {
             "host": host,
             "port": port,
+            "reload": True,
         }
         # Если режим работы не продовский, то добавим удобные фичи для работы
         pass
 
         # Запускаемся
         uvicorn.run("backend.main:app", **parameters)
+
+    def runfront(self, host: str = "127.0.0.1", port: int = 80):
+        """Запуск фронтов"""
+        logger.info("FRONT SERVER RUN WITH %s:%s", host, port)
+
+        import os
+        os.system(f"npm run serve --prefix frontend -- --host {host} --port {port} ")
 
 
 if __name__ == "__main__":

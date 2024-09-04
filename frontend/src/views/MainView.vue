@@ -14,24 +14,24 @@
 
 <script>
 import axios from 'axios';
+import { inject } from 'vue'
 
 export default {
-  props: {
-    API_URL: {
-      type: String,
-      required: true,
-    }
-  },
+  props: {  },
   data() {
     return {
       name: "Проверка АПИ",
-      currentDatetime: ""
+      currentDatetime: null,
+      API_URL: null,
     }
   },
   computed: {
     pageName() {
       return `"${this.name}"`;
     }
+  },
+  mounted() {
+    this.API_URL = inject("API_URL");
   },
   methods: {
     getDatetime() {

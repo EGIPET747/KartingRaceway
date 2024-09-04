@@ -30,7 +30,7 @@ class Club(ClubBase, TableMixin, StatusMixin, table=True):
         return (await session.execute(statement)).scalars().first()
 
 
-class Raceway(RacewayBase, StatusMixin, table=True):
+class Raceway(RacewayBase, TableMixin, StatusMixin, table=True):
     __tablename__ = TABLE_PREFIX + "raceway"
 
     id: int = Field(default=None, primary_key=True)

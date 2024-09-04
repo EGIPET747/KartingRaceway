@@ -19,12 +19,7 @@ import UserBlock from "@/views/user/UserBlock.vue"
 
 export default {
   name: 'AboutView',
-  props: {
-    API_URL: {
-      type: String,
-      required: true,
-    }
-  },
+  props: {  },
   components: { UserBlock },
   data() {
     return {
