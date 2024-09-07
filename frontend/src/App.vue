@@ -6,6 +6,8 @@
         <RouterView :pageName="pageName" />
       </div>
     </main>
+    <DynamicDialog />
+    <ConfirmDialog></ConfirmDialog>
     <div id="footer" class="m-0 pb-2">
       <Footer />
     </div>
@@ -13,6 +15,8 @@
 </template>
 
 <script>
+import ConfirmDialog from 'primevue/confirmdialog';
+import DynamicDialog from 'primevue/dynamicdialog';
 import MenuItems from '@/components/MenuItems';
 import Footer from '@/components/Footer.vue';
 
@@ -24,6 +28,7 @@ export default {
     }
   },
   components: {
+    ConfirmDialog, DynamicDialog,
     Footer, MenuItems,
   },
   methods: {
@@ -33,7 +38,22 @@ export default {
   }
 }
 </script>
+<script setup>
+  import { useToast } from 'primevue/usetoast';
+  import { useConfirm } from 'primevue/useconfirm';
+  import { useDialog } from 'primevue/usedialog';
+  import { provide } from 'vue';
 
+  const TOAST = useToast();
+  const CONFIRM = useConfirm();
+  const DIALOG = useDialog();
+
+  // Мы можем навесить по одному шаблону диалогов и тостов на весь проект и дёргать их в любом месте!
+  // Каеф :)
+  provide("TOAST", TOAST);
+  provide("CONFIRM", CONFIRM);
+  provide("DIALOG", DIALOG);
+</script>
 <style>
 body {
   font-family: Avenir, Helvetica, Arial, sans-serif;

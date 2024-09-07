@@ -11,7 +11,7 @@
          :aBMethod="createRacewayDialog"
          :aBArgs="{club_id: club.id}" />
         <div className="flex py-2 flex-row justify-content-between">
-          <Button label="Удалить" @click="deleteClub(club.id)" severity="danger" icon="pi pi-trash" iconPos="right" />
+          <Button @click="deleteClub(club.id)" label="Удалить" severity="danger" icon="pi pi-trash" iconPos="right"></Button>
         </div>
       </template>
     </Card>
@@ -22,8 +22,6 @@
 import Accordion from '@/components/Accordion.vue';
 import Button from 'primevue/button';
 import Card from 'primevue/card';
-// import DynamicDialog from 'primevue/dynamicdialog';
-
 
 export default {
   name: "ClubBlock",
@@ -44,7 +42,7 @@ export default {
     }
   },
   components: {
-    Accordion, Button, Card, 
+    Accordion, Button, Card 
   },
   methods: {
     getAddressList(raceways) {
@@ -59,10 +57,10 @@ export default {
 </script>
 
 <script setup>
-import { useDialog } from 'primevue/usedialog';
 import CreateRacewayForm from '@/views/club/CreateRacewayForm.vue';
+import { inject } from 'vue';
 
-const dialog = useDialog();
+const dialog = inject("DIALOG");
 
 const createRacewayDialog = (data) => {
     dialog.open(CreateRacewayForm, {
